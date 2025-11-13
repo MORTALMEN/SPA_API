@@ -1,0 +1,40 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<h1 style="margin:20px 0;">{{ title }}</h1>
+<div style="margin:20px 0;">
+  <a href="/payments/add" style="padding:6px 12px; background:green; color:white; text-decoration:none; border-radius:4px;">Додати платіж</a>
+</div>
+
+{% if payments and payments.length > 0 %}
+<table border="1" cellspacing="0" cellpadding="8" style="width:90%; margin:20px;">
+  <thead style="background:#eee;">
+    <tr>
+      <th>ID</th>
+      <th>Бронювання</th>
+      <th>Дата платежу</th>
+      <th>Сума</th>
+      <th>Метод</th>
+      <th>Дії</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in payments %}
+    <tr>
+      <td>{{ p.PaymentID }}</td>
+      <td>{{ p.Booking ? p.Booking.BookingID : '' }}</td>
+      <td>{{ p.PaymentDate }}</td>
+      <td>{{ p.Amount }}</td>
+      <td>{{ p.PaymentMethod }}</td>
+      <td>
+        <a href="/payments/edit/{{ p.PaymentID }}" style="padding:4px 8px; background:orange; color:white; text-decoration:none; border-radius:4px;">Редагувати</a>
+        <a href="/payments/delete/{{ p.PaymentID }}" style="padding:4px 8px; background:red; color:white; text-decoration:none; border-radius:4px;" onclick="return confirm('Ви впевнені, що хочете видалити цей платіж?');">Видалити</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p style="margin:20px;">Платежів поки немає.</p>
+{% endif %}
+{% endblock %}

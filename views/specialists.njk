@@ -1,0 +1,31 @@
+{% extends "layout.njk" %}
+{% block content %}
+<h1>{{ title }}</h1>
+<a href="/specialists/add" style="padding:6px 12px; background:green; color:white;">Додати спеціаліста</a>
+
+{% if specialists and specialists.length > 0 %}
+<table border="1" cellpadding="6" style="margin-top:15px;">
+  <thead>
+    <tr><th>ID</th><th>Ім’я</th><th>Прізвище</th><th>Спеціалізація</th><th>Телефон</th><th>Email</th><th>Дії</th></tr>
+  </thead>
+  <tbody>
+    {% for s in specialists %}
+    <tr>
+      <td>{{ s.SpecialistID }}</td>
+      <td>{{ s.FirstName }}</td>
+      <td>{{ s.LastName }}</td>
+      <td>{{ s.Specialization }}</td>
+      <td>{{ s.Phone }}</td>
+      <td>{{ s.Email }}</td>
+      <td>
+        <a href="/specialists/edit/{{ s.SpecialistID }}" style="background:orange;color:white;padding:4px;">Редагувати</a>
+        <a href="/specialists/delete/{{ s.SpecialistID }}" style="background:red;color:white;padding:4px;" onclick="return confirm('Видалити спеціаліста?')">Видалити</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>Немає спеціалістів.</p>
+{% endif %}
+{% endblock %}

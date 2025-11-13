@@ -1,0 +1,10 @@
+{% extends "layout.njk" %}
+{% block content %}
+<h1>{{ title }}</h1>
+<form method="POST" action="{{ action }}" style="width:70%;margin:20px;">
+  <label>Назва:</label><br><input name="ServiceName" value="{{ service.ServiceName or '' }}" required><br><br>
+  <label>Тривалість (хв):</label><br><input name="Duration" value="{{ service.Duration or '' }}"><br><br>
+  <label>Ціна:</label><br><input name="Price" value="{{ service.Price or '' }}"><br><br>
+  <button type="submit">Зберегти</button> <a href="/services">Назад</a>
+</form>
+{% endblock %}

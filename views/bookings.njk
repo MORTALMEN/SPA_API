@@ -1,0 +1,43 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<h2>Бронювання</h2>
+
+<a href="/bookings/add" class="btn btn-primary mb-3">Додати бронювання</a>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Клієнт</th>
+      <th>Фахівець</th>
+      <th>Послуга</th>
+      <th>Дата</th>
+      <th>Час</th>
+      <th>Статус</th>
+      <th>Дії</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for booking in bookings %}
+    <tr>
+      <td>{{ booking.BookingID }}</td>
+      <td>{{ booking.client ? booking.client.Name : '' }}</td>
+      <td>{{ booking.specialist ? booking.specialist.Name : '' }}</td>
+      <td>{{ booking.service ? booking.service.ServiceName : '' }}</td>
+      <td>{{ booking.BookingDate }}</td>
+      <td>{{ booking.BookingTime }}</td>
+      <td>{{ booking.Status }}</td>
+      <td>
+        <a href="/bookings/edit/{{ booking.BookingID }}" class="btn btn-warning btn-sm">Редагувати</a>
+        <a href="/bookings/delete/{{ booking.BookingID }}" class="btn btn-danger btn-sm">Видалити</a>
+      </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="8" class="text-center">Бронювань поки немає.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

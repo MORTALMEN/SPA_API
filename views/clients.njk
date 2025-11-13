@@ -1,0 +1,45 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  <h1 style="margin:20px 0;">{{ title }}</h1>
+
+  <div style="margin:20px 0;">
+    <a href="/clients/add" style="padding:6px 12px; background:green; color:white; text-decoration:none; border-radius:4px;">Додати клієнта</a>
+  </div>
+
+  {% if clients and clients.length > 0 %}
+    <table border="1" cellspacing="0" cellpadding="8" style="width:90%; margin:20px;">
+      <thead style="background:#eee;">
+        <tr>
+          <th>ID</th>
+          <th>Ім’я</th>
+          <th>Прізвище</th>
+          <th>Email</th>
+          <th>Телефон</th>
+          <th>Username</th>
+          <th>Роль</th>
+          <th>Дії</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in clients %}
+          <tr>
+            <td>{{ c.ClientID }}</td>
+            <td>{{ c.FirstName }}</td>
+            <td>{{ c.LastName }}</td>
+            <td>{{ c.Email }}</td>
+            <td>{{ c.Phone }}</td>
+            <td>{{ c.username }}</td>
+            <td>{{ c.role }}</td>
+            <td>
+              <a href="/clients/edit/{{ c.ClientID }}" style="padding:4px 8px; background:orange; color:white; text-decoration:none; border-radius:4px;">Редагувати</a>
+              <a href="/clients/delete/{{ c.ClientID }}" style="padding:4px 8px; background:red; color:white; text-decoration:none; border-radius:4px;" onclick="return confirm('Ви впевнені, що хочете видалити цього клієнта?');">Видалити</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p style="margin:20px;">Клієнтів поки немає.</p>
+  {% endif %}
+{% endblock %}

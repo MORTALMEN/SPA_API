@@ -1,0 +1,39 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  <h1 style="margin:20px 0;">{{ title }}</h1>
+
+  <div style="margin:20px 0;">
+    <a href="/services/add" style="padding:6px 12px; background:green; color:white; text-decoration:none; border-radius:4px;">Додати послугу</a>
+  </div>
+
+  {% if services and services.length > 0 %}
+    <table border="1" cellspacing="0" cellpadding="8" style="width:90%; margin:20px;">
+      <thead style="background:#eee;">
+        <tr>
+          <th>ID</th>
+          <th>Назва послуги</th>
+          <th>Тривалість (хв)</th>
+          <th>Ціна</th>
+          <th>Дії</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in services %}
+          <tr>
+            <td>{{ s.ServiceID }}</td>
+            <td>{{ s.ServiceName }}</td>
+            <td>{{ s.Duration }}</td>
+            <td>{{ s.Price }}</td>
+            <td>
+              <a href="/services/edit/{{ s.ServiceID }}" style="padding:4px 8px; background:orange; color:white; text-decoration:none; border-radius:4px;">Редагувати</a>
+              <a href="/services/delete/{{ s.ServiceID }}" style="padding:4px 8px; background:red; color:white; text-decoration:none; border-radius:4px;" onclick="return confirm('Ви впевнені, що хочете видалити цю послугу?');">Видалити</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p style="margin:20px;">Послуг поки немає.</p>
+  {% endif %}
+{% endblock %}

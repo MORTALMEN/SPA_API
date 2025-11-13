@@ -1,0 +1,36 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<h1 style="margin:20px 0;">{{ title }}</h1>
+<div style="margin:20px 0;">
+  <a href="/users/add" style="padding:6px 12px; background:green; color:white; text-decoration:none; border-radius:4px;">Додати користувача</a>
+</div>
+
+{% if users and users.length > 0 %}
+<table border="1" cellspacing="0" cellpadding="8" style="width:90%; margin:20px;">
+  <thead style="background:#eee;">
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Role</th>
+      <th>Дії</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for u in users %}
+    <tr>
+      <td>{{ u.id }}</td>
+      <td>{{ u.username }}</td>
+      <td>{{ u.role }}</td>
+      <td>
+        <a href="/users/edit/{{ u.id }}" style="padding:4px 8px; background:orange; color:white; text-decoration:none; border-radius:4px;">Редагувати</a>
+        <a href="/users/delete/{{ u.id }}" style="padding:4px 8px; background:red; color:white; text-decoration:none; border-radius:4px;" onclick="return confirm('Ви впевнені, що хочете видалити цього користувача?');">Видалити</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p style="margin:20px;">Користувачів поки немає.</p>
+{% endif %}
+{% endblock %}

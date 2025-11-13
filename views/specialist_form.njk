@@ -1,0 +1,12 @@
+{% extends "layout.njk" %}
+{% block content %}
+<h1>{{ title }}</h1>
+<form method="POST" action="{{ action }}" style="width:70%;margin:20px;">
+  <label>Ім’я:</label><br><input name="FirstName" value="{{ specialist.FirstName or '' }}" required><br><br>
+  <label>Прізвище:</label><br><input name="LastName" value="{{ specialist.LastName or '' }}" required><br><br>
+  <label>Спеціалізація:</label><br><input name="Specialization" value="{{ specialist.Specialization or '' }}"><br><br>
+  <label>Телефон:</label><br><input name="Phone" value="{{ specialist.Phone or '' }}"><br><br>
+  <label>Email:</label><br><input name="Email" value="{{ specialist.Email or '' }}"><br><br>
+  <button type="submit">Зберегти</button> <a href="/specialists">Назад</a>
+</form>
+{% endblock %}

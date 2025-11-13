@@ -1,0 +1,12 @@
+{% extends "layout.njk" %}
+{% block content %}
+  <h1>Login</h1>
+  <form method="POST" action="/auth/login">
+    <label>Email:</label>
+    <input type="email" name="email" required>
+    <label>Password:</label>
+    <input type="password" name="password" required>
+    <button type="submit">Login</button>
+  </form>
+  <p>Don't have an account? <a href="/auth/register">Register</a></p>
+{% endblock %}

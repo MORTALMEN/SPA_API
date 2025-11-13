@@ -1,0 +1,31 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  <h1 style="margin:20px 0;">{{ title }}</h1>
+
+  <form method="POST" action="{{ action }}" style="width:90%; margin:20px;">
+    <label>Ім’я:</label><br>
+    <input type="text" name="FirstName" value="{{ client.FirstName or '' }}" required><br><br>
+
+    <label>Прізвище:</label><br>
+    <input type="text" name="LastName" value="{{ client.LastName or '' }}" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="Email" value="{{ client.Email or '' }}"><br><br>
+
+    <label>Телефон:</label><br>
+    <input type="text" name="Phone" value="{{ client.Phone or '' }}"><br><br>
+
+    <label>Username:</label><br>
+    <input type="text" name="username" value="{{ client.username or '' }}"><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" name="password" value="{{ client.password or '' }}"><br><br>
+
+    <label>Роль:</label><br>
+    <input type="text" name="role" value="{{ client.role or '' }}"><br><br>
+
+    <button type="submit" style="padding:6px 12px; background:blue; color:white; border:none; border-radius:4px;">Зберегти</button>
+    <a href="/clients" style="margin-left:10px;">Назад</a>
+  </form>
+{% endblock %}

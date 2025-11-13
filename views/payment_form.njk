@@ -1,0 +1,10 @@
+{% extends "layout.njk" %}
+{% block content %}
+<h1>{{ title }}</h1>
+<form method="POST" action="{{ action }}" style="width:70%;margin:20px;">
+  <label>Сума:</label><br><input name="Amount" value="{{ payment.Amount or '' }}"><br><br>
+  <label>Дата:</label><br><input type="date" name="PaymentDate" value="{{ payment.PaymentDate or '' }}"><br><br>
+  <label>Метод:</label><br><input name="Method" value="{{ payment.Method or '' }}"><br><br>
+  <button type="submit">Зберегти</button> <a href="/payments">Назад</a>
+</form>
+{% endblock %}

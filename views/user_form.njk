@@ -1,0 +1,10 @@
+{% extends "layout.njk" %}
+{% block content %}
+<h1>{{ title }}</h1>
+<form method="POST" action="{{ action }}" style="width:70%;margin:20px;">
+  <label>Username:</label><br><input name="username" value="{{ user.username or '' }}" required><br><br>
+  <label>Password:</label><br><input type="password" name="password" value="{{ user.password or '' }}" required><br><br>
+  <label>Role:</label><br><input name="role" value="{{ user.role or '' }}"><br><br>
+  <button type="submit">Зберегти</button> <a href="/users">Назад</a>
+</form>
+{% endblock %}
